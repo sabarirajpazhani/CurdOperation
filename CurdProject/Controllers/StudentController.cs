@@ -43,5 +43,14 @@ namespace CurdProject.Controllers
             Student s1 = _db.students.FirstOrDefault(x => x.Id == id);
             return Ok(s1);
         }
+
+        [HttpPut]
+        [Route("Update")]
+        public IActionResult Update(Student s1)
+        {
+            _db.Update(s1);
+            _db.SaveChanges();
+            return Ok(s1);  
+        }
     }
 }
