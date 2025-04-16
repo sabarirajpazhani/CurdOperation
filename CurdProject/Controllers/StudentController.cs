@@ -35,5 +35,13 @@ namespace CurdProject.Controllers
             students = _db.students.ToList();
             return Ok(students);
         }
+
+        [HttpGet]
+        [Route("GetById")]
+        public IActionResult GetById(int id)
+        {
+            Student s1 = _db.students.FirstOrDefault(x => x.Id == id);
+            return Ok(s1);
+        }
     }
 }
