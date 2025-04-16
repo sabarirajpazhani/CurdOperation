@@ -1,6 +1,6 @@
 ﻿using CurdProject.DB;
 using CurdProject.Model;
-using Microsoft.AspNetCore.Components;
+//using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -46,11 +46,21 @@ namespace CurdProject.Controllers
 
         [HttpPut]
         [Route("Update")]
-        public IActionResult Update(Student s1)
+        public IActionResult Update([FromBody]Student s1)
         {
             _db.Update(s1);
             _db.SaveChanges();
             return Ok(s1);  
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public IActionResult DeleteById(int id)
+        {
+            Student s1 = _db.students.FirstOrDefault(x => x.Id==id);
+            _db.Remove(s1);
+            _db.SaveChanges();
+            return Ok(s1);
         }
     }
 }
