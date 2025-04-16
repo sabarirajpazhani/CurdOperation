@@ -1,5 +1,6 @@
 ﻿using CurdProject.DB;
 using CurdProject.Model;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,15 @@ namespace CurdProject.Controllers
             _db.Add(s1);
             _db.SaveChanges();
             return Ok(s1);    
+        }
+
+        [HttpGet]
+        [Route("GetAllStudents")]
+        public IActionResult GetAll()
+        {
+            List<Student> students = new List<Student>();
+            students = _db.students.ToList();
+            return Ok(students);
         }
     }
 }
